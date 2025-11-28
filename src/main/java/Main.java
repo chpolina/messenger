@@ -14,7 +14,6 @@ public class Main {
         for (User user : allUsers) {
             System.out.println(user.getName());
         }
-        System.out.println();
 
         System.out.println("Сообщения Полины:");
         Message[] polinaMessages = polina.getMessages();
@@ -36,5 +35,32 @@ public class Main {
             System.out.println(kateMessages[i]);
         }
         System.out.println();
+
+        // Группа
+        Group chatGroup = new Group("Учебная группа", kate);
+        chatGroup.addUser(asilya);
+        chatGroup.addUser(polina);
+
+        kate.sendGroupMessage(chatGroup, "Сегодня встреча в 15:00!", "21.10.2025", "12:00");
+
+        System.out.println("Сообщения группы:");
+        for (int i = 0; i < chatGroup.getMessageCount(); i++) {
+            System.out.println(chatGroup.getMessages()[i]);
+        }
+        System.out.println();
+
+        // Канал
+        Chanel news = new Chanel("kate'slife", kate);
+        news.addUser(asilya);
+        news.addUser(polina);
+
+        kate.sendChannelMessage(news, "Скоро сажусь на самолет.", "21.10.2025", "12:10");
+
+        System.out.println("Сообщения канала:");
+        for (int i = 0; i < news.getMessageCount(); i++) {
+            System.out.println(news.getMessages()[i]);
+        }
     }
+
+
 }
