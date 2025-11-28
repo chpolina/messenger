@@ -21,19 +21,38 @@ public class Chanel {
     }
 
     public void addUser(User user) {
-
+        for (int i = 0; i < subscribers.length; i++) {
+            if (subscribers[i] == null) {
+                subscribers[i] = user;
+                return;
+            }
+        }
+        expandArray();
+        addUser(user);
     }
 
     private void expandArray() {
-
+        User[] newArray = new User[subscribers.length * 2];
+        for (int i = 0; i < subscribers.length; i++) {
+            newArray[i] = subscribers[i];
+        }
+        subscribers = newArray;
     }
 
     public void removeUser(User user) {
-
+        for (int i = 0; i < subscribers.length; i++) {
+            if (subscribers[i] == user) {
+                subscribers[i] = null;
+                return;
+            }
+        }
     }
 
     public void addMessage(Message message) {
-
+        if (messageCount < channelMessages.length) {
+            channelMessages[messageCount] = message;
+            messageCount++;
+        }
     }
 
     public Message[] getMessages() {
