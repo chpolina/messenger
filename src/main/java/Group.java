@@ -54,4 +54,16 @@ public class Group {
             messageCount++;
         }
     }
+
+    public Message[] getMessages() {
+        return groupMessages;
+    }
+
+    public int getMessageCount() {
+        return messageCount;
+    }
+
+    public User[] getUsers() {
+        return users;
+    }
 }
