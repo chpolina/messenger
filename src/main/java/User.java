@@ -29,6 +29,21 @@ public class User {
 
     }
 
+
+    public void sendGroupMessage(Group group, String text, String date, String time) {
+        Message message = new Message(text, this, null, date, time);
+        group.addMessage(message);
+    }
+
+    public void sendChannelMessage(Chanel chanel, String text, String date, String time) {
+        if (chanel.getCreator() != this) {
+            System.out.println("Только создатель канала может писать!");
+            return;
+        }
+        Message message = new Message(text, this, null, date, time);
+        chanel.addMessage(message);
+    }
+
     public void receiveMessage(Message message) {
         if (messageCount < messages.length) {
             messages[messageCount] = message;
@@ -39,5 +54,6 @@ public class User {
     public Message[] getMessages() {
         return messages;
     }
+
 
 }
